@@ -11,7 +11,12 @@ public class PlayerShipController : MonoBehaviour
     // To shoot a bullet...
     // 1. Create a bullet
     // 2. Add pattern how a bullet moves
-
+    // 3. Create the fire point like a gun
+    // 4. Create a bullet when pressed the key: Use "Instantiate()"
+    
+    public Transform playersGun; // Get the gun's location
+    public GameObject playerBullet;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -28,5 +33,11 @@ public class PlayerShipController : MonoBehaviour
         // Debug.Log(y);
 
         transform.position += new Vector3(x, y, 0) * Time.deltaTime * 4f;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // Debug.Log("Pressed the space");
+            Instantiate(playerBullet, playersGun.position, transform.rotation);
+        }
     }
 }
