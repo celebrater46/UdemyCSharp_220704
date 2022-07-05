@@ -26,6 +26,12 @@ public class PlayerShipController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Move();
+        Shot();
+    }
+
+    void Move()
+    {
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         
@@ -33,7 +39,10 @@ public class PlayerShipController : MonoBehaviour
         // Debug.Log(y);
 
         transform.position += new Vector3(x, y, 0) * Time.deltaTime * 4f;
+    }
 
+    void Shot()
+    {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // Debug.Log("Pressed the space");
