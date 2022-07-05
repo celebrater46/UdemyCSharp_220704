@@ -15,7 +15,7 @@ public class PlayerShipController : MonoBehaviour
     // 4. Create a bullet when pressed the key: Use "Instantiate()"
     
     public Transform playersGun; // Get the gun's location
-    public GameObject playerBullet;
+    public GameObject playerBulletPrefab;
     
     // Start is called before the first frame update
     void Start()
@@ -46,7 +46,7 @@ public class PlayerShipController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // Debug.Log("Pressed the space");
-            Instantiate(playerBullet, playersGun.position, transform.rotation);
+            Instantiate(playerBulletPrefab, playersGun.position, transform.rotation);
         }
     }
 }
