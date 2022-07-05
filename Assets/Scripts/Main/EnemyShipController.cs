@@ -21,5 +21,6 @@ public class EnemyShipController : MonoBehaviour
     {
         Debug.Log("Destroy!!");
         Destroy(gameObject);
+        Destroy(other.gameObject);
     }
 }
