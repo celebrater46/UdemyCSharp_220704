@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,5 +15,10 @@ public class EnemyShipController : MonoBehaviour
     void Update()
     {
         transform.position -= new Vector3(0, 0.5f, 0) * Time.deltaTime;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Hit!!");
     }
 }
