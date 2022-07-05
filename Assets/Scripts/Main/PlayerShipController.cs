@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class PlayerShipController : MonoBehaviour
 {
+    // To move the player...
+    // 1. Get the keycode of the key a player input
+    // 2. Change the player's position
+    
+    // To shoot a bullet...
+    // 1. Create a bullet
+    // 2. Add pattern how a bullet moves
+
     // Start is called before the first frame update
     void Start()
     {
