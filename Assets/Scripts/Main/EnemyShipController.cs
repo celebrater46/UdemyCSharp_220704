@@ -19,6 +19,7 @@ public class EnemyShipController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Hit!!");
+        Debug.Log("Destroy!!");
+        Destroy(gameObject);
     }
 }
