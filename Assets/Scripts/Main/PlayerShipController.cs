@@ -13,6 +13,12 @@ public class PlayerShipController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float x = Input.GetAxis("Horizontal");
+        float y = Input.GetAxis("Vertical");
         
+        // Debug.Log(x);
+        // Debug.Log(y);
+
+        transform.position += new Vector3(x, y, 0) * Time.deltaTime * 4f;
     }
 }
