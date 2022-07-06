@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
-    private int score = 1000;
+    private int score = 100;
     
     // Start is called before the first frame update
     void Start()
@@ -18,5 +18,11 @@ public class GameController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void AddScore()
+    {
+        score += 100;
+        scoreText.text = "SCORE:" + score;
     }
 }
