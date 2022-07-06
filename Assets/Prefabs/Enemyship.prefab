@@ -122,6 +122,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 4128129828674963163, guid: e55a07e778251564ab3aee8c540a0743,
     type: 3}
+  enemyBullet: {fileID: 1099093353779193659, guid: 508470cd7f520de4c8bc28213385cae1,
+    type: 3}
 --- !u!58 &2210627825847388026
 CircleCollider2D:
   m_ObjectHideFlags: 0

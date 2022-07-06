@@ -2,16 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyShipController : MonoBehaviour
 {
     public GameObject explosion;
+    public GameObject enemyBullet;
     private GameController gameController;
+    private float offset;
     
     // Start is called before the first frame update
     void Start()
     {
+        // offset = Random.Range(1f, 2f);
+        offset = Random.Range(0, 2f * Mathf.PI);
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        InvokeRepeating("EnemyShot", Random.Range(1f, 3f), Random.Range(0.5f, 1f));
     }
 
     // Update is called once per frame
@@ -24,7 +30,7 @@ public class EnemyShipController : MonoBehaviour
         else
         {
             transform.position -= new Vector3(
-                Mathf.Cos(Time.frameCount * 0.05f) * 0.01f, 
+                Mathf.Cos(Time.frameCount * 0.05f + offset) * 0.01f, 
                 Time.deltaTime, 
                 0
                 );
@@ -46,5 +52,10 @@ public class EnemyShipController : MonoBehaviour
         Instantiate(explosion, transform.position, transform.rotation);
         Destroy(gameObject);
         Destroy(other.gameObject);
+    }
+
+    void EnemyShot()
+    {
+        Instantiate(enemyBullet, transform.position, transform.rotation);
     }
 }
