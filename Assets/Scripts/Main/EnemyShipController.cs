@@ -24,7 +24,7 @@ public class EnemyShipController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            
+            Instantiate(explosion, other.transform.position, transform.rotation);
         } else if (other.CompareTag("Bullet"))
         {
             gameController.AddScore();
