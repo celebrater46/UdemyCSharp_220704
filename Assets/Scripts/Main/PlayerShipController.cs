@@ -40,7 +40,15 @@ public class PlayerShipController : MonoBehaviour
         // Debug.Log(x);
         // Debug.Log(y);
 
-        transform.position += new Vector3(x, y, 0) * Time.deltaTime * 4f;
+        Vector3 nextPosition = transform.position + new Vector3(x, y, 0) * Time.deltaTime * 4f;
+        nextPosition = new Vector3(
+            Mathf.Clamp(nextPosition.x, -2.9f, 2.9f),
+            Mathf.Clamp(nextPosition.y, -2f, 2f),
+            nextPosition.z
+            );
+        
+        // transform.position += new Vector3(x, y, 0) * Time.deltaTime * 4f;
+        transform.position = nextPosition;
     }
 
     void Shot()
