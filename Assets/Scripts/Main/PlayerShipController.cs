@@ -16,11 +16,13 @@ public class PlayerShipController : MonoBehaviour
     
     public Transform playersGun; // Get the gun's location
     public GameObject playerBulletPrefab;
+    private AudioSource audioSource;
+    public AudioClip shotSound;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -47,6 +49,7 @@ public class PlayerShipController : MonoBehaviour
         {
             // Debug.Log("Pressed the space");
             Instantiate(playerBulletPrefab, playersGun.position, transform.rotation);
+            audioSource.PlayOneShot(shotSound);
         }
     }
 }
