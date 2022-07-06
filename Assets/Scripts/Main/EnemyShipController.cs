@@ -17,7 +17,18 @@ public class EnemyShipController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position -= new Vector3(0, 0.5f, 0) * Time.deltaTime;
+        if (transform.position.y < -2.5)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            transform.position -= new Vector3(
+                Mathf.Cos(Time.frameCount * 0.05f) * 0.01f, 
+                Time.deltaTime, 
+                0
+                );
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
