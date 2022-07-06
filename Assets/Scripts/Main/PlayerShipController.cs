@@ -32,11 +32,11 @@ public class PlayerShipController : MonoBehaviour
 
     void Move()
     {
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
         
-        // Debug.Log(x);
-        // Debug.Log(y);
+        Debug.Log(x);
+        Debug.Log(y);
 
         transform.position += new Vector3(x, y, 0) * Time.deltaTime * 4f;
     }

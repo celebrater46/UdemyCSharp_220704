@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class EnemyShipController : MonoBehaviour
 {
+    public GameObject explosion;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,7 @@ public class EnemyShipController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Destroy!!");
+        Instantiate(explosion, transform.position, transform.rotation);
         Destroy(gameObject);
         Destroy(other.gameObject);
     }
