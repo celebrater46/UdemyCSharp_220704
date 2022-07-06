@@ -22,10 +22,16 @@ public class EnemyShipController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Player"))
+        {
+            
+        } else if (other.CompareTag("Bullet"))
+        {
+            gameController.AddScore();
+        }
         Debug.Log("Destroy!!");
         Instantiate(explosion, transform.position, transform.rotation);
         Destroy(gameObject);
         Destroy(other.gameObject);
-        gameController.AddScore();
     }
 }
