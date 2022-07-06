@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class PlayerShipController : MonoBehaviour
     
     public Transform playersGun; // Get the gun's location
     public GameObject playerBulletPrefab;
+    public GameObject explosion;
+    private GameController gameController;
     private AudioSource audioSource;
     public AudioClip shotSound;
     
@@ -23,6 +26,7 @@ public class PlayerShipController : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
     // Update is called once per frame
@@ -58,6 +62,17 @@ public class PlayerShipController : MonoBehaviour
             // Debug.Log("Pressed the space");
             Instantiate(playerBulletPrefab, playersGun.position, transform.rotation);
             audioSource.PlayOneShot(shotSound);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("EnemyBullet"))
+        {
+            Instantiate(explosion, transform.position, transform.rotation);
+            gameController.UnveilGameOverText();
+            Destroy(gameObject);
+            Destroy(other.gameObject);
         }
     }
 }

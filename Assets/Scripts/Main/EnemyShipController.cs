@@ -30,8 +30,8 @@ public class EnemyShipController : MonoBehaviour
         else
         {
             transform.position -= new Vector3(
-                Mathf.Cos(Time.frameCount * 0.05f + offset) * 0.01f, 
-                Time.deltaTime, 
+                Mathf.Cos(Time.frameCount * 0.01f + offset) * 0.01f, 
+                Time.deltaTime * 2, 
                 0
                 );
         }
@@ -43,19 +43,26 @@ public class EnemyShipController : MonoBehaviour
         {
             Instantiate(explosion, other.transform.position, transform.rotation);
             gameController.UnveilGameOverText();
+            DestroyEnemy(other);
         } 
-        else if (other.CompareTag("Bullet"))
+        else if (other.CompareTag("Bullet") && !other.CompareTag("EnemyBullet"))
         {
             gameController.AddScore();
+            DestroyEnemy(other);
         }
-        Debug.Log("Destroy!!");
-        Instantiate(explosion, transform.position, transform.rotation);
-        Destroy(gameObject);
-        Destroy(other.gameObject);
+        
     }
 
     void EnemyShot()
     {
         Instantiate(enemyBullet, transform.position, transform.rotation);
+    }
+
+    void DestroyEnemy(Collider2D other)
+    {
+        Debug.Log("Destroy!!");
+        Instantiate(explosion, transform.position, transform.rotation);
+        Destroy(gameObject);
+        Destroy(other.gameObject);
     }
 }
