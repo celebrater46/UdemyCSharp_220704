@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -19,11 +20,18 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (gameOverText.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManager.LoadScene("Main");
+            }
+        }
     }
 
     public void AddScore()
     {
+        // Debug.Log("Hello World from AddScore()");
         score += 100;
         scoreText.text = "SCORE:" + score;
     }
