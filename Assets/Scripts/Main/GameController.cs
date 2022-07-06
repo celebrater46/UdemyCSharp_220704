@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    public GameObject gameOverText;
     public TextMeshProUGUI scoreText;
     private int score = 100;
     
@@ -12,6 +13,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         scoreText.text = "SCORE:" + score;
+        gameOverText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -24,5 +26,10 @@ public class GameController : MonoBehaviour
     {
         score += 100;
         scoreText.text = "SCORE:" + score;
+    }
+
+    public void UnveilGameOverText()
+    {
+        gameOverText.SetActive(true);
     }
 }
