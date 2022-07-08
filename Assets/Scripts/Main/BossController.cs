@@ -9,12 +9,7 @@ public class BossController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int bulletCount = 8;
-        for (int i = 1; i <= bulletCount; i++)
-        {
-            float deg = i / 4f;
-            Shot(Mathf.PI * deg);
-        }
+        MultiShot(32, 0.5f);
         // Shot(Mathf.PI * 1.25f);
         // Shot(Mathf.PI * 1.5f);
         // Shot(Mathf.PI * 1.75f);
@@ -26,9 +21,19 @@ public class BossController : MonoBehaviour
         
     }
 
-    void Shot(float angle)
+    void Shot(float angle, float speed)
     {
         BossBulletController bullet = Instantiate(bossBulletPrefab, transform.position, transform.rotation);
-        bullet.Setting(angle);
+        bullet.Setting(angle, speed);
+    }
+
+    void MultiShot(int count, float speed)
+    {
+        // int bulletCount = 8;
+        for (int i = 1; i <= count; i++)
+        {
+            float deg = Mathf.PI * (i / (count * 0.5f));
+            Shot(deg, speed);
+        }
     }
 }
