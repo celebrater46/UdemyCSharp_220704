@@ -9,9 +9,15 @@ public class BossController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Shot(Mathf.PI * 1.25f);
-        Shot(Mathf.PI * 1.5f);
-        Shot(Mathf.PI * 1.75f);
+        int bulletCount = 8;
+        for (int i = 1; i <= bulletCount; i++)
+        {
+            float deg = i / 4f;
+            Shot(Mathf.PI * deg);
+        }
+        // Shot(Mathf.PI * 1.25f);
+        // Shot(Mathf.PI * 1.5f);
+        // Shot(Mathf.PI * 1.75f);
     }
 
     // Update is called once per frame
