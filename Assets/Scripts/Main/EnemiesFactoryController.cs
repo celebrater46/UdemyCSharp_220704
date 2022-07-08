@@ -5,10 +5,11 @@ using UnityEngine;
 public class EnemiesFactoryController : MonoBehaviour
 {
     public GameObject enemiesShipPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("Spawn", 2f, 1f);
+        // InvokeRepeating("Spawn", 2f, 1f);
     }
 
     // Update is called once per frame
