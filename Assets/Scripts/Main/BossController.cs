@@ -14,7 +14,8 @@ public class BossController : MonoBehaviour
         // Shot(Mathf.PI * 1.5f);
         // Shot(Mathf.PI * 1.75f);
         // MachineGun(8, 4);
-        StartCoroutine(MachineGun(8, 4));
+        // StartCoroutine(MachineGun(8, 4));
+        StartCoroutine(BossBehavior());
     }
 
     // Update is called once per frame
@@ -39,12 +40,25 @@ public class BossController : MonoBehaviour
         }
     }
 
-    IEnumerator MachineGun(int ways, int times)
+    IEnumerator MachineGun(int ways, int times, int speed, float wait)
     {
         for (int i = 0; i < times; i++)
         {
-            yield return new WaitForSeconds(0.3f);
-            MultiWayShot(ways, 2f);
+            yield return new WaitForSeconds(wait);
+            MultiWayShot(ways, speed);
+        }
+    }
+
+    IEnumerator BossBehavior()
+    {
+        while (true)
+        {
+            yield return MachineGun(6, 8, 5, 0.1f);
+            yield return new WaitForSeconds(1f);
+            yield return MachineGun(16, 3, 3, 0.2f);
+            yield return new WaitForSeconds(1f);
+            yield return MachineGun(32, 6, 2, 0.3f);
+            yield return new WaitForSeconds(1f);
         }
     }
 }
