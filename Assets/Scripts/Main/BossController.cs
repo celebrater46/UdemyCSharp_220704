@@ -51,8 +51,15 @@ public class BossController : MonoBehaviour
 
     IEnumerator BossBehavior()
     {
+        while (transform.position.y > 1f)
+        {
+            transform.position -= new Vector3(0, 1, 0) * Time.deltaTime;
+            yield return null;
+        }
+        
         while (true)
         {
+            Debug.Log("Hello World");
             yield return MachineGun(6, 8, 5, 0.1f);
             yield return new WaitForSeconds(1f);
             yield return MachineGun(16, 3, 3, 0.2f);

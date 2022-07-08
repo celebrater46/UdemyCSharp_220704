@@ -157,3 +157,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e034124251b0247aa4ecd50a500a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossBulletPrefab: {fileID: -4086456266009795532, guid: 7f1cd7ad21511d24c9bf5dbdb2077a80,
+    type: 3}

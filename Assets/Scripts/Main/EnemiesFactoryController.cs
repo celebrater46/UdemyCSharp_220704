@@ -5,11 +5,13 @@ using UnityEngine;
 public class EnemiesFactoryController : MonoBehaviour
 {
     public GameObject enemiesShipPrefab;
+    public GameObject bossPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
-        // InvokeRepeating("Spawn", 2f, 1f);
+        InvokeRepeating("Spawn", 2f, 1f);
+        Invoke("SpawnBoss", 4f);
     }
 
     // Update is called once per frame
@@ -30,5 +32,10 @@ public class EnemiesFactoryController : MonoBehaviour
             spawnPosition, 
             transform.rotation
         );
+    }
+
+    void SpawnBoss()
+    {
+        Instantiate(bossPrefab, transform.position, transform.rotation);
     }
 }
