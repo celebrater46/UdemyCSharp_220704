@@ -26,6 +26,17 @@ public class BossBulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(dx,  dy, 0) * Time.deltaTime;
+        if (transform.position.x < -4
+            || transform.position.x > 4
+            || transform.position.y < -3
+            || transform.position.y > 3
+            )
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            transform.position += new Vector3(dx,  dy, 0) * Time.deltaTime;
+        }
     }
 }
