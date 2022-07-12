@@ -51,6 +51,7 @@ public class BossController : MonoBehaviour
 
     IEnumerator BossBehavior()
     {
+        // init
         while (transform.position.y > 1f)
         {
             transform.position -= new Vector3(0, 1, 0) * Time.deltaTime;
