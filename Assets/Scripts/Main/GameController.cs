@@ -38,6 +38,6 @@ public class GameController : MonoBehaviour
 
     public void UnveilGameOverText()
     {
-        gameOverText.SetActive(true);
+        // gameOverText.SetActive(true);
     }
 }

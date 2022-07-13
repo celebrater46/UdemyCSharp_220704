@@ -45,7 +45,9 @@ public class EnemyShipController : MonoBehaviour
             gameController.UnveilGameOverText();
             DestroyEnemy(other);
         } 
-        else if (other.CompareTag("Bullet") && !other.CompareTag("EnemyBullet"))
+        else if (other.CompareTag("Bullet") 
+                 && !other.CompareTag("EnemyBullet") 
+                 && !other.CompareTag("Boss"))
         {
             gameController.AddScore();
             DestroyEnemy(other);
