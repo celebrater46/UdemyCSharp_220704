@@ -71,7 +71,7 @@ public class PlayerShipController : MonoBehaviour
         {
             Instantiate(explosion, transform.position, transform.rotation);
             gameController.UnveilGameOverText();
-            Destroy(gameObject);
+            // Destroy(gameObject);
             Destroy(other.gameObject);
         }
     }

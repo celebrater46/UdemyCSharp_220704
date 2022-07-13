@@ -63,6 +63,6 @@ public class EnemyShipController : MonoBehaviour
         Debug.Log("Destroy!!");
         Instantiate(explosion, transform.position, transform.rotation);
         Destroy(gameObject);
-        Destroy(other.gameObject);
+        // Destroy(other.gameObject);
     }
 }
