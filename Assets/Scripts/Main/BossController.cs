@@ -39,6 +39,16 @@ public class BossController : MonoBehaviour
             Shot(deg, speed);
         }
     }
+    
+    IEnumerator RollingShot(int count, float speed, float wait, bool isReverse)
+    {
+        for (int i = 1; i <= count; i++)
+        {
+            float deg = Mathf.PI * (i / (count * 0.5f));
+            Shot(isReverse ? deg : -deg, speed);
+            yield return new WaitForSeconds(wait);
+        }
+    }
 
     IEnumerator MachineGun(int ways, int times, int speed, float wait)
     {
@@ -46,6 +56,15 @@ public class BossController : MonoBehaviour
         {
             yield return new WaitForSeconds(wait);
             MultiWayShot(ways, speed);
+        }
+    }
+    
+    IEnumerator RollingGun(int ways, int times, int speed, float wait, bool isReverse)
+    {
+        for (int i = 0; i < times; i++)
+        {
+            yield return new WaitForSeconds(wait);
+            yield return RollingShot(ways, speed, wait, isReverse);
         }
     }
 
@@ -61,6 +80,9 @@ public class BossController : MonoBehaviour
         while (true)
         {
             Debug.Log("Hello World");
+            yield return RollingGun(24, 8, 2, 0.01f, true);
+            yield return RollingGun(24, 8, 2, 0.01f, false);
+            yield return new WaitForSeconds(1f);
             yield return MachineGun(6, 8, 5, 0.1f);
             yield return new WaitForSeconds(1f);
             yield return MachineGun(16, 3, 3, 0.2f);
