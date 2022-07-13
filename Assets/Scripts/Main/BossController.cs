@@ -34,23 +34,40 @@ public class BossController : MonoBehaviour
 
     void AimShot(float speed)
     {
-        // Get relative position between the player and the boss
-        Vector3 relativePosition = player.transform.position - transform.position;
-        // Get direction of the player
-        float angle = Mathf.Atan2(relativePosition.y, relativePosition.x);
+        float angle = GetAimAngle();
         Shot(angle, speed);
     }
-
+    
     void MultiWayShot(int count, float speed)
     {
         // int bulletCount = 8;
         for (int i = 1; i <= count; i++)
         {
-            float deg = Mathf.PI * (i / (count * 0.5f));
-            Shot(deg, speed);
+            float angle = Mathf.PI * (i / (count * 0.5f));
+            Shot(angle, speed);
         }
     }
-    
+
+    void MultiWayAimShot(int count, float speed)
+    {
+        // int bulletCount = 8;
+        for (int i = 1; i <= count; i++)
+        {
+            // float angle = Mathf.PI * (i / (count * 0.5f));
+            float angle = (i - count / 2f) * ((Mathf.PI / 2f) / count);
+            float aimAngle = GetAimAngle();
+            Shot(aimAngle - angle, speed);
+        }
+    }
+
+    private float GetAimAngle()
+    {
+        // Get relative position between the player and the boss
+        Vector3 relativePosition = player.transform.position - transform.position;
+        // Get direction of the player
+        return Mathf.Atan2(relativePosition.y, relativePosition.x);
+    }
+
     IEnumerator RollingShot(int count, float speed, float wait, bool isReverse)
     {
         for (int i = 1; i <= count; i++)
@@ -67,7 +84,8 @@ public class BossController : MonoBehaviour
         {
             yield return new WaitForSeconds(wait);
             // MultiWayShot(ways, speed);
-            AimShot(speed);
+            // AimShot(speed);
+            MultiWayAimShot(ways, speed);
         }
     }
     
