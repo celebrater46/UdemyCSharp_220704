@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
+    public GameObject player;
     public BossBulletController bossBulletPrefab;
     
     // Start is called before the first frame update
@@ -15,6 +16,7 @@ public class BossController : MonoBehaviour
         // Shot(Mathf.PI * 1.75f);
         // MachineGun(8, 4);
         // StartCoroutine(MachineGun(8, 4));
+        player = GameObject.Find("PlayerShip");
         StartCoroutine(BossBehavior());
     }
 
@@ -28,6 +30,15 @@ public class BossController : MonoBehaviour
     {
         BossBulletController bullet = Instantiate(bossBulletPrefab, transform.position, transform.rotation);
         bullet.Setting(angle, speed);
+    }
+
+    void AimShot(float speed)
+    {
+        // Get relative position between the player and the boss
+        Vector3 relativePosition = player.transform.position - transform.position;
+        // Get direction of the player
+        float angle = Mathf.Atan2(relativePosition.y, relativePosition.x);
+        Shot(angle, speed);
     }
 
     void MultiWayShot(int count, float speed)
@@ -55,7 +66,8 @@ public class BossController : MonoBehaviour
         for (int i = 0; i < times; i++)
         {
             yield return new WaitForSeconds(wait);
-            MultiWayShot(ways, speed);
+            // MultiWayShot(ways, speed);
+            AimShot(speed);
         }
     }
     
