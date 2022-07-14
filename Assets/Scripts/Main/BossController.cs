@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
+    public GameObject explosion;
+    public GameObject explosionMini;
+    private GameController gameController;
     public GameObject player;
     public BossBulletController bossBulletPrefab;
-    
+    private int bossHp = 20;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +20,7 @@ public class BossController : MonoBehaviour
         // MachineGun(8, 4);
         // StartCoroutine(MachineGun(8, 4));
         player = GameObject.Find("PlayerShip");
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
         StartCoroutine(BossBehavior());
     }
 
@@ -83,7 +87,15 @@ public class BossController : MonoBehaviour
         for (int i = 0; i < times; i++)
         {
             yield return new WaitForSeconds(wait);
-            // MultiWayShot(ways, speed);
+            MultiWayShot(ways, speed);
+        }
+    }
+    
+    IEnumerator AimMachineGun(int ways, int times, int speed, float wait)
+    {
+        for (int i = 0; i < times; i++)
+        {
+            yield return new WaitForSeconds(wait);
             // AimShot(speed);
             MultiWayAimShot(ways, speed);
         }
@@ -110,15 +122,51 @@ public class BossController : MonoBehaviour
         while (true)
         {
             Debug.Log("Hello World");
-            yield return RollingGun(24, 8, 2, 0.01f, true);
+            yield return MachineGun(6, 16, 5, 0.1f);
+            yield return new WaitForSeconds(1f);
             yield return RollingGun(24, 8, 2, 0.01f, false);
             yield return new WaitForSeconds(1f);
-            yield return MachineGun(5, 8, 5, 0.1f);
+            yield return AimMachineGun(6, 8, 5, 0.1f);
             yield return new WaitForSeconds(1f);
-            yield return MachineGun(16, 3, 3, 0.2f);
+            yield return AimMachineGun(16, 3, 3, 0.2f);
             yield return new WaitForSeconds(1f);
-            yield return MachineGun(32, 6, 2, 0.3f);
+            yield return AimMachineGun(32, 6, 2, 0.3f);
             yield return new WaitForSeconds(1f);
         }
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Instantiate(explosion, other.transform.position, transform.rotation);
+            gameController.UnveilGameOverText();
+            // DestroyEnemy(other);
+            Destroy(other.gameObject);
+        } 
+        else if (other.CompareTag("Bullet") 
+                 && !other.CompareTag("EnemyBullet") 
+                 && !other.CompareTag("Enemy"))
+        {
+            if (bossHp > 0)
+            {
+                bossHp -= 2;
+                Instantiate(explosionMini, transform.position, transform.rotation);
+            }
+            else
+            {
+                gameController.AddScore(5000);
+                DestroyEnemy(other);
+            }
+        }
+        
+    }
+    
+    void DestroyEnemy(Collider2D other)
+    {
+        Debug.Log("Destroy!!");
+        Instantiate(explosion, transform.position, transform.rotation);
+        Destroy(gameObject);
+        // Destroy(other.gameObject);
     }
 }

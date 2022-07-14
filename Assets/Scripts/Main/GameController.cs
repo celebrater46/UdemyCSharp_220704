@@ -29,10 +29,10 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void AddScore()
+    public void AddScore(int num)
     {
         // Debug.Log("Hello World from AddScore()");
-        score += 100;
+        score += num;
         scoreText.text = "SCORE:" + score;
     }
 

@@ -157,5 +157,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e034124251b0247aa4ecd50a500a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosion: {fileID: 4128129828674963163, guid: e55a07e778251564ab3aee8c540a0743,
+    type: 3}
+  explosionMini: {fileID: 3989667453382185598, guid: d2bd437b38d287544b8eb03fd52a75f0,
+    type: 3}
+  player: {fileID: 0}
   bossBulletPrefab: {fileID: -4086456266009795532, guid: 7f1cd7ad21511d24c9bf5dbdb2077a80,
     type: 3}

@@ -49,7 +49,7 @@ public class EnemyShipController : MonoBehaviour
                  && !other.CompareTag("EnemyBullet") 
                  && !other.CompareTag("Boss"))
         {
-            gameController.AddScore();
+            gameController.AddScore(100);
             DestroyEnemy(other);
         }
         
