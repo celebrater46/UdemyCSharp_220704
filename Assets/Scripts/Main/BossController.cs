@@ -54,7 +54,7 @@ public class BossController : MonoBehaviour
         for (int i = 1; i <= count; i++)
         {
             // float angle = Mathf.PI * (i / (count * 0.5f));
-            float angle = (i - count / 2f) * ((Mathf.PI / 2f) / count);
+            float angle = (i - count / 2f - 0.5f) * ((Mathf.PI / 2f) / count);
             float aimAngle = GetAimAngle();
             Shot(aimAngle - angle, speed);
         }
@@ -113,7 +113,7 @@ public class BossController : MonoBehaviour
             yield return RollingGun(24, 8, 2, 0.01f, true);
             yield return RollingGun(24, 8, 2, 0.01f, false);
             yield return new WaitForSeconds(1f);
-            yield return MachineGun(6, 8, 5, 0.1f);
+            yield return MachineGun(5, 8, 5, 0.1f);
             yield return new WaitForSeconds(1f);
             yield return MachineGun(16, 3, 3, 0.2f);
             yield return new WaitForSeconds(1f);
