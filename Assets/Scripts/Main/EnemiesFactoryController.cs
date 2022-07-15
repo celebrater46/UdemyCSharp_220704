@@ -10,9 +10,10 @@ public class EnemiesFactoryController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("Spawn", 2f, 1f);
+        // InvokeRepeating("Spawn", 2f, 1f);
+        StartCoroutine(SpawnEnemy());
         // Invoke("CancelInvoke", 10);
-        // Invoke("SpawnBoss", 4f);
+        Invoke("SpawnBoss", 11);
     }
 
     // Update is called once per frame
@@ -33,6 +34,27 @@ public class EnemiesFactoryController : MonoBehaviour
             spawnPosition, 
             transform.rotation
         );
+    }
+
+    IEnumerator SpawnEnemy()
+    {
+        int x = 0;
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            Spawn();
+            if (x > 10)
+            {
+                yield break;
+            }
+            x++;
+        }
+        // for (int i = 0; i < 40; i++)
+        // {
+        //     yield return new WaitForSeconds(1f);
+        //     Spawn();
+        // }
+        yield break;
     }
 
     void SpawnBoss()
