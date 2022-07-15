@@ -11,7 +11,8 @@ public class EnemiesFactoryController : MonoBehaviour
     void Start()
     {
         InvokeRepeating("Spawn", 2f, 1f);
-        Invoke("SpawnBoss", 4f);
+        // Invoke("CancelInvoke", 10);
+        // Invoke("SpawnBoss", 4f);
     }
 
     // Update is called once per frame
